@@ -15,9 +15,9 @@ import { AverageReading } from "./AverageReading";
 import "./BloodPressureChart.css";
 
 type Props = {
-    width: number;
-    height: number;
-    margin: {
+    width?: number;
+    height?: number;
+    margin?: {
         top: number;
         left: number;
         bottom: number;
