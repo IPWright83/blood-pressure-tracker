@@ -1,0 +1,28 @@
+.tick {
+    font-size: 12px;
+}
+
+.bandLabel {
+    font-size: 14px;
+}
+
+.measurementBandLabel {
+    opacity: 0.5;
+}
+
+svg {
+    border: thin solid black;
+}
+
+.reading {
+    stroke: black;
+    stroke-width: 1.5;
+    stroke-opacity: 0.6;
+}
+
+.averageReading {
+    stroke: black;
+    stroke-width: 4;
+    stroke-opacity: 1;
+}
+
