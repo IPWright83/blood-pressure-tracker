@@ -27,11 +27,11 @@ export const SystolicBands = ({ margin, bandwidth, scale }: Props) => {
         {systolicBands.map(band =>
             <g key={band.min}>
                 <rect 
+                    className="band"
                     x={margin.left - bandwidth}  
                     y={scale(band.max)}
                     width={bandwidth}
                     height={scale(band.min) - scale(band.max)}
-                    opacity={0.3}
                     fill={band.color}
                 />
                 {band.label && 

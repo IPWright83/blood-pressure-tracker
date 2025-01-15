@@ -24,6 +24,7 @@ export const MeasurementBands = ({ margin, width, systolicScale, diastolicScale,
         {measurementBands.map(band => 
             <g key={band.sysMin}>
                 <path 
+                    className="band"
                     fill={band.color}
                     d={`M ${margin.left} ${systolicScale(band.sysMax)} 
                         L ${width - margin.right} ${diastolicScale(band.diaMax)} 
