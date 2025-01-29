@@ -1,0 +1,85 @@
+"use client"
+
+import { scaleLinear, scaleTime } from "d3-scale";
+import { extent } from "d3-array";
+import { line } from "d3-shape";
+import { useMemo } from "react";
+
+import { PressureAxis } from "./PressureAxis";
+import { TimeAxis } from "./TimeAxis";
+import { PulseAxis } from "./PulseAxis";
+import { IdealBand } from "./IdealBand";
+
+import type { IData, IMargin, IDatum } from "../../types";
+
+import "./AveragesChart.css";
+
+type Props = {
+    width?: number;
+    height?: number;
+    margin?: IMargin
+    data?: IData;
+}
+
+export const AveragesChart = ({
+    width = 900, 
+    height = 700, 
+    margin = { top: 10, bottom: 70, left: 70, right: 70 },
+    data = [],
+}) => {
+    const pressureScale = useMemo(() => scaleLinear()
+        .range([height - margin.bottom, margin.top])
+        .domain([0, 240])
+        .nice()
+        , [height, margin.bottom, margin.top]);
+
+    const pulseScale = useMemo(() => scaleLinear()
+        .range([height - margin.bottom, margin.top])
+        .domain([0, 200])
+        .nice()
+        , [height, margin.bottom, margin.top]);
+
+    const timeScale = useMemo(() => {
+        const extents = extent(data, (d: IDatum) => d.timestamp) as Date[];
+        if (!extents[0]) { 
+            const today = new Date();
+            today.setDate(today.getDate() - 1);
+            extents[0] = today;
+        }
+        if (!extents[1]) { extents[1] = new Date() }
+
+        return scaleTime()
+            .range([margin.left, width - margin.right])
+            .domain(extents)
+            .nice()
+    }, [width, margin.left, margin.right])
+
+    const sysD = line()
+        .x((d: IDatum) => timeScale(d.timestamp))
+        .y((d: IDatum) => pressureScale(d.sys))
+        (data)
+
+    const diaD = line()
+        .x((d: IDatum) => timeScale(d.timestamp))
+        .y((d: IDatum) => pressureScale(d.dia))
+        (data)
+
+    const pulseD = line()
+        .x((d: IDatum) => timeScale(d.timestamp))
+        .y((d: IDatum) => pulseScale(d.pulse))
+        (data)
+
+    return <svg width={width} height={height}>
+        <g className="axis">
+            <PressureAxis scale={pressureScale} height={height} width={width} margin={margin} />
+            <TimeAxis scale={timeScale} height={height} width={width} margin={margin} />
+            <PulseAxis scale={pulseScale} height={height} width={width} margin={margin} />
+            <IdealBand height={height} width={width} margin={margin} scale={pressureScale} />
+        </g>
+        <g className="data">
+            {sysD && <path className="avgSys" d={sysD} stroke="steelblue" fill="none" />}
+            {diaD && <path className="avgDia" d={diaD} stroke="steelblue" fill="none" />}
+            {pulseD && <path className="avgPulse" d={pulseD} stroke="red" fill="none" />}
+        </g>
+    </svg>
+}

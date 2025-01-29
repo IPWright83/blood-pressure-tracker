@@ -12,42 +12,22 @@ import { MeasurementBands } from "./MeasurementBands";
 import { Reading } from "./Reading";
 import { AverageReading } from "./AverageReading";
 
+import type { IData, IMargin } from "../../types";
+
 import "./BloodPressureChart.css";
 
 type Props = {
     width?: number;
     height?: number;
-    margin?: {
-        top: number;
-        left: number;
-        bottom: number;
-        right: number;
-    }
+    margin?: IMargin
+    data?: IData;
 }
-
-
-
-const data = [
-    { timestamp: "2025-01-15T00:00:00.000Z", sys: 142, dia: 96, pulse: 89 },
-    { timestamp: "2025-01-16T00:00:00.000Z", sys: 152, dia: 84, pulse: 103 },
-    { timestamp: "2025-01-17T00:00:00.000Z", sys: 102, dia: 79, pulse: 78 },
-    { timestamp: "2025-01-18T00:00:00.000Z", sys: 120, dia: 96, pulse: 84 },
-    { timestamp: "2025-01-19T00:00:00.000Z", sys: 140, dia: 116, pulse: 84 },
-    { timestamp: "2025-01-20T00:00:00.000Z", sys: 110, dia: 106, pulse: 84 },
-    { timestamp: "2025-01-21T00:00:00.000Z", sys: 135, dia: 99, pulse: 84 },
-    { timestamp: "2025-01-22T00:00:00.000Z", sys: 147, dia: 87, pulse: 84 },
-    { timestamp: "2025-01-23T00:00:00.000Z", sys: 158, dia: 77, pulse: 84 },
-    { timestamp: "2025-01-24T00:00:00.000Z", sys: 125, dia: 75, pulse: 84 },
-    { timestamp: "2025-01-25T00:00:00.000Z", sys: 140, dia: 82, pulse: 84 },
-    { timestamp: "2025-01-26T00:00:00.000Z", sys: 147, dia: 89, pulse: 84 },
-    { timestamp: "2025-01-27T00:00:00.000Z", sys: 138, dia: 93, pulse: 84 },
-    { timestamp: "2025-01-28T00:00:00.000Z", sys: 128, dia: 103, pulse: 84 }
-]
 
 export const BloodPressureChart = ({ 
     width = 900, 
     height = 700, 
-    margin = { top: 30, bottom: 30, left: 200, right: 200 } 
+    margin = { top: 30, bottom: 30, left: 200, right: 200 },
+    data = [],
 }: Props) => {
     const systolicScale = useMemo(() => 
         scaleLinear()

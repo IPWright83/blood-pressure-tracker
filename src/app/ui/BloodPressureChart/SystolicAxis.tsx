@@ -5,10 +5,10 @@ import { select } from "d3-selection";
 import { axisLeft } from "d3-axis";
 import { useEffect, useRef } from "react";
 
+import { IMargin } from "../../types";
+
 type Props = {
-    margin: {
-        left: number;
-    },
+    margin: IMargin;
     scale: ScaleLinear<number, number>
 }
 

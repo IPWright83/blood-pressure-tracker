@@ -71,7 +71,7 @@ export const Meter = () => {
                     <div className="value">
                         <input 
                             type="number" 
-                            max="250" 
+                            max="200" 
                             min="0" 
                             value={pulse} 
                             onChange={(e) => {
