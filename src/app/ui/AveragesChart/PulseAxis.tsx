@@ -21,7 +21,6 @@ export const PulseAxis = ({ scale, width, height, margin }: Props) => {
     const axis = useRef<SVGGElement>(null);
 
     const plotHeight = height - margin.top - margin.bottom;
-    const plotWidth = width - margin.left - margin.right;
 
     useEffect(() => {
         if (axis.current) {

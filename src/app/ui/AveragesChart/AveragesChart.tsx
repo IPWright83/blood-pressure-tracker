@@ -26,7 +26,7 @@ export const AveragesChart = ({
     height = 700, 
     margin = { top: 10, bottom: 70, left: 70, right: 70 },
     data = [],
-}) => {
+}: Props) => {
     const pressureScale = useMemo(() => scaleLinear()
         .range([height - margin.bottom, margin.top])
         .domain([0, 240])
@@ -52,29 +52,29 @@ export const AveragesChart = ({
             .range([margin.left, width - margin.right])
             .domain(extents)
             .nice()
-    }, [width, margin.left, margin.right])
+    }, [width, margin.left, margin.right, data])
 
-    const sysD = line()
-        .x((d: IDatum) => timeScale(d.timestamp))
-        .y((d: IDatum) => pressureScale(d.sys))
+    const sysD = line<IDatum>()
+        .x((d) => timeScale(d.timestamp))
+        .y((d) => pressureScale(d.sys))
         (data)
 
-    const diaD = line()
-        .x((d: IDatum) => timeScale(d.timestamp))
-        .y((d: IDatum) => pressureScale(d.dia))
+    const diaD = line<IDatum>()
+        .x((d) => timeScale(d.timestamp))
+        .y((d) => pressureScale(d.dia))
         (data)
 
-    const pulseD = line()
-        .x((d: IDatum) => timeScale(d.timestamp))
-        .y((d: IDatum) => pulseScale(d.pulse))
+    const pulseD = line<IDatum>()
+        .x((d) => timeScale(d.timestamp))
+        .y((d) => pulseScale(d.pulse))
         (data)
 
     return <svg width={width} height={height}>
         <g className="axis">
-            <PressureAxis scale={pressureScale} height={height} width={width} margin={margin} />
+            <PressureAxis scale={pressureScale} height={height} margin={margin} />
             <TimeAxis scale={timeScale} height={height} width={width} margin={margin} />
             <PulseAxis scale={pulseScale} height={height} width={width} margin={margin} />
-            <IdealBand height={height} width={width} margin={margin} scale={pressureScale} />
+            <IdealBand width={width} margin={margin} scale={pressureScale} />
         </g>
         <g className="data">
             {sysD && <path className="avgSys" d={sysD} stroke="steelblue" fill="none" />}

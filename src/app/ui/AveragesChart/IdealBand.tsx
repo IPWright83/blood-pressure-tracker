@@ -4,12 +4,11 @@ import { IMargin } from "../../types";
 
 type Props = {
     width: number;
-    height: number;
     margin: IMargin,
     scale: ScaleLinear<number, number>
 }
 
-export const IdealBand = ({ width, height, margin, scale }: Props) => (
+export const IdealBand = ({ width, margin, scale }: Props) => (
     <rect
         className="idealBand"
         x={margin.left}

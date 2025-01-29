@@ -61,7 +61,7 @@ export const BloodPressureChart = ({
             <DiastolicAxis scale={diastolicScale} margin={margin} width={width} />
         </g>
         <g className="data">
-            {data.map(d => <Reading key={d.timestamp} sys={d.sys} dia={d.dia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />)}
+            {data.map(d => <Reading key={+d.timestamp} sys={d.sys} dia={d.dia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />)}
             {hasAverages && <AverageReading avgSys={avgSys} avgDia={avgDia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />}
         </g>
     </svg>

@@ -9,7 +9,6 @@ import { IMargin } from "../../types";
 
 type Props = {
     margin: IMargin,
-    width: number;
     height: number;
     scale: ScaleLinear<number, number>
 }
@@ -17,11 +16,10 @@ type Props = {
 /**
  * Renders an Axis for the Systolic & Diastolic measurements
  */
-export const PressureAxis = ({ scale, width, height, margin }: Props) => {
+export const PressureAxis = ({ scale, height, margin }: Props) => {
     const axis = useRef<SVGGElement>(null);
 
     const plotHeight = height - margin.top - margin.bottom;
-    const plotWidth = width - margin.left - margin.right;
 
     useEffect(() => {
         if (axis.current) {
