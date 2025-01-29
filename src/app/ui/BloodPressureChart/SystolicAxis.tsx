@@ -25,7 +25,7 @@ export const SystolicAxis = ({ scale, margin }: Props) => {
     }, [scale])
 
     return <>
-        <text y={15} x={margin.left} textAnchor="end" dx={40}>Systolic mm Hg</text>
+        <text y={15} x={margin.left} textAnchor="end" dx={40}>Systolic mmHg</text>
         <g className="sysAxis" transform={`translate(${margin.left}, 0)`} ref={axis} />
     </>
 }

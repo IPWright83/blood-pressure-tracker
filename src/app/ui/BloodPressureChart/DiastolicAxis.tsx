@@ -27,7 +27,9 @@ export const DiastolicAxis = ({ width, scale, margin }: Props) => {
     }, [scale])
 
     return <>
-        <text y={15} x={width - margin.right} dx={-40}>Diastolic mm Hg</text>
+        <text y={15} x={width - margin.right} dx={-40} transform={`translate(0, ${DiastolicAxis.ScaleOffset})`}>Diastolic mmHg</text>
         <g className="diaAxis" transform={`translate(${width - margin.right}, 0)`} ref={axis} />
     </>
 }
+
+DiastolicAxis.ScaleOffset = 120;

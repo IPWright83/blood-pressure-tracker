@@ -1,3 +1,7 @@
+svg {
+    user-select: none;
+}
+
 .tick {
     font-size: 12px;
 }
@@ -9,10 +13,6 @@
 .measurementBandLabel {
     opacity: 0.5;
     font-size: 12px;
-}
-
-svg {
-    border: thin solid black;
 }
 
 .band {

@@ -1,0 +1,98 @@
+@font-face {
+  font-family: "Digital7";
+  src: url("/Digital7Mono.ttf");
+}
+
+.reading {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.screen {
+    background-color: #F6F6F6;
+    border-color: #CCC;
+    border-width: 1px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 220px;
+    margin: auto;
+}
+
+.meter {
+    border: thin solid #CCC;
+    background-color: white;
+    width: 300px;
+    max-width: 300px;
+    padding: 30px;
+    border-radius: 50px;
+    filter: drop-shadow(3px 3px #AAA)
+}
+
+.meter.fullWidth {
+    width: 800px;
+    max-width: 800px;
+}
+
+.screen.fullWidth {
+    width: 750px;
+}
+
+.key {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 30px;
+}
+
+.type {
+    font-weight: bold;
+}
+
+.unit {
+    font-size: 0.8em;
+}
+
+.value {
+    font-size: 4em;
+    margin-left: 30px;
+    margin-top: -30px;
+    font-family: "Digital7";
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.caveat {
+    font-style: italic;
+    font-size: 0.8em;
+    text-align: center;
+}
+
+button {
+    background-color: #2A317E;
+    padding: 10px;
+    border-radius: 15px;
+    color: #FFF;
+}
+
+input[type="number"] {
+    background-color: #F6F6F6;
+    text-align: right;
+    line-height: 20px;
+}
+
+input[type="datetime-local"] {
+    background-color: #F6F6F6;
+    margin-left: 25px;
+}
+
+image {
+    fill: white;
+}

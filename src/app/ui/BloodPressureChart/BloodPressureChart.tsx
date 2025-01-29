@@ -25,7 +25,7 @@ type Props = {
     }
 }
 
-const scaleOffset = 120;
+
 
 const data = [
     { timestamp: "2025-01-15T00:00:00.000Z", sys: 142, dia: 96, pulse: 89 },
@@ -59,8 +59,8 @@ export const BloodPressureChart = ({
     const diastolicScale = useMemo(() => 
         scaleLinear()
             .range([
-                height - margin.bottom - margin.top - scaleOffset,
-                margin.top + scaleOffset
+                height - margin.bottom - margin.top - DiastolicAxis.ScaleOffset,
+                margin.top + DiastolicAxis.ScaleOffset
             ])
             .domain([0, 140])
             .nice()
