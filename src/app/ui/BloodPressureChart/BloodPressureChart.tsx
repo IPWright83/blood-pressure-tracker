@@ -64,10 +64,11 @@ export const BloodPressureChart = ({
             ])
             .domain([0, 140])
             .nice()
-        , [height, scaleOffset, margin.bottom, margin.top]);
+        , [height, margin.bottom, margin.top]);
 
     const avgSys = mean(data, d => d.sys);
     const avgDia = mean(data, d => d.dia);
+    const hasAverages = avgSys !== undefined && avgDia !== undefined;
 
     return <svg width={width} height={height}>
         <g className="bands">
@@ -81,7 +82,7 @@ export const BloodPressureChart = ({
         </g>
         <g className="data">
             {data.map(d => <Reading key={d.timestamp} sys={d.sys} dia={d.dia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />)}
-            <AverageReading avgSys={avgSys} avgDia={avgDia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />
+            {hasAverages && <AverageReading avgSys={avgSys} avgDia={avgDia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />}
         </g>
     </svg>
 }
