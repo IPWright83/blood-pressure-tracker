@@ -2,3 +2,7 @@
     fill: steelblue;
     fill-opacity: 0.2;
 }
+
+.legend {
+    font-size: 12;
+}

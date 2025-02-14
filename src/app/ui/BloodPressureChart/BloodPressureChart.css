@@ -31,3 +31,4 @@ svg {
     stroke-opacity: 1;
 }
 
+/*sm*/ @media screen and (max-width: 576px) { .bandLabel { display: none } }

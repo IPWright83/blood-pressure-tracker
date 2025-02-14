@@ -9,6 +9,7 @@ import { PressureAxis } from "./PressureAxis";
 import { TimeAxis } from "./TimeAxis";
 import { PulseAxis } from "./PulseAxis";
 import { IdealBand } from "./IdealBand";
+import { Legend } from "./Legend";
 
 import { useTargetWidth } from "../useTargetWidth";
 import type { IData, IMargin, IDatum } from "../../types";
@@ -74,6 +75,7 @@ export const AveragesChart = ({
         <div style={{ width: "100%", marginTop: 20, }} ref={target}>
             <h3 style={{ textAlign: "center", fontWeight: "bold" }}>Blood pressure over time</h3>
             <svg width={width} height={height}>
+                <Legend width={width} />
                 <g className="axis">
                     <PressureAxis scale={pressureScale} height={height} margin={margin} />
                     <TimeAxis scale={timeScale} height={height} width={width} margin={margin} />
