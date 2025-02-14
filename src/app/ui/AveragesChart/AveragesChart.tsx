@@ -71,7 +71,8 @@ export const AveragesChart = ({
         (data)
 
     return (
-        <div style={{ width: "100%" }} ref={target}>
+        <div style={{ width: "100%", marginTop: 20, }} ref={target}>
+            <h3 style={{ textAlign: "center", fontWeight: "bold" }}>Blood pressure over time</h3>
             <svg width={width} height={height}>
                 <g className="axis">
                     <PressureAxis scale={pressureScale} height={height} margin={margin} />

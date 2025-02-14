@@ -1,24 +1,29 @@
 "use client"
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 import "./Meter.css";
+import { IDatum } from "../../types";
 
-// const toLocalISOString = (timestamp: number) => {
-//     try {
-//         const date = new Date(timestamp)
-//         date.setSeconds(0);
-//         date.setMilliseconds(0);
-//         return date.toISOString().slice(0, -1);
-//     } catch {
-//         return toLocalISOString(Date.now());
-//     }
-// }
+type Props = {
+    addReading: (datum: IDatum) => void;
+}
 
-export const Meter = () => {
-    const [sys, setSys] = useState(118);
-    const [dia, setDia] = useState(78);
-    const [pulse, setPulse] = useState(90);
+export const Meter = ({ addReading }: Props) => {
+    const [sys, setSys] = useState(0);
+    const [dia, setDia] = useState(0);
+    const [pulse, setPulse] = useState(0);
+
+    const record = useCallback(() => {
+        if (sys && dia && pulse) {
+            addReading({
+                timestamp: new Date(),
+                sys,
+                dia,
+                pulse,
+            });
+        }
+    }, [sys, dia, pulse]);
 
     return (
         <div className="meter">
@@ -80,7 +85,7 @@ export const Meter = () => {
             </div>
             <div className="buttonContainer">
                 <button>Add Historical Reading</button>
-                <button className="record">RECORD</button>
+                <button className="record" onClick={record}> RECORD</button>
             </div>
         </div >
     );

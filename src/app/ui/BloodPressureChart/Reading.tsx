@@ -12,11 +12,14 @@ type Props = {
     diastolicScale: ScaleLinear<number, number>
 }
 
-export const Reading = ({ sys, dia, systolicScale, diastolicScale, width, margin }: Props) => (
-    <line className="reading"
+export const Reading = ({ sys, dia, systolicScale, diastolicScale, width, margin }: Props) => {
+    console.log({ sys, dia });
+
+    return (<line className="reading"
         x1={margin.left}
         x2={width - margin.right}
         y1={systolicScale(sys)}
         y2={diastolicScale(dia)}
     />
-);
+    );
+}

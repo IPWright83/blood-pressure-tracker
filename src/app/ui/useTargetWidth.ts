@@ -22,7 +22,6 @@ export const useTargetWidth = (margin: IMargin): [MutableRefObject<HTMLDivElemen
     // Handle updates to the size
     useResizeObserver(target, entry => {
         const { inlineSize: width } = entry.contentBoxSize[0];
-        console.log(Math.round(width))
         setWidth(Math.round(width))
     }, {
         polyfill: typeof window === 'undefined' ? ServerSideResizeObserverPolyfill : null
