@@ -1,9 +1,11 @@
+import { IMargin } from "../../types";
+
 type Props = {
-    width: number;
+    margin: IMargin
 }
 
-export const Legend = ({ width }: Props) => {
-    return <g className="legend" transform={`translate(${width / 2}, 40)`}>
+export const Legend = ({ margin }: Props) => {
+    return <g className="legend" transform={`translate(${margin.left}, 20)`}>
         <g transform={`translate(40, 0)`}>
             <line x1="0" y1="0" x2="15" y2="0" stroke="steelblue" strokeWidth="2" />
             <text dx="20" dy="3">Sys (upper)</text>

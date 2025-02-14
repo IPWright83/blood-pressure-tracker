@@ -46,7 +46,7 @@ export const Meter = ({ addReading }: Props) => {
             setTimesamp(undefined);
             setTimestampVisible(false);
         }
-    }, [sys, dia, pulse]);
+    }, [sys, dia, pulse, addReading, timestamp]);
 
     const recordHistorical = useCallback(() => {
         if (historyInput.current) {

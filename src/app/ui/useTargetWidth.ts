@@ -3,9 +3,9 @@ import { MutableRefObject, useRef, useState, useLayoutEffect } from "react";
 import { IMargin } from '../types';
 
 class ServerSideResizeObserverPolyfill {
-    constructor(callback: ResizeObserverCallback) {}
-    observe(target: Element, options?: ResizeObserverOptions) {}
-    unobserve(target: Element) {}
+    constructor() {}
+    observe() {}
+    unobserve() {}
 }
 
 export const useTargetWidth = (margin: IMargin): [MutableRefObject<HTMLDivElement | null>, number] => {

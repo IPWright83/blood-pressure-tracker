@@ -1,5 +1,7 @@
 "use client";
+
 import { useState, useEffect } from "react";
+import type { IData } from "../types";
 
 const getStorageValue = (key: string): IData => {
     let data;
@@ -7,9 +9,11 @@ const getStorageValue = (key: string): IData => {
     try {
         if (typeof window !== "undefined") {
             const saved = localStorage.getItem(key);
-            data = JSON.parse(saved);
+            data = JSON.parse(saved ?? "");
         }
-    } catch (e) {}
+    } catch (e) {
+        console.error(e);
+    }
 
     return data || [
         // { timestamp: new Date("2025-01-15T00:00:00.000Z"), sys: 142, dia: 96, pulse: 89 },
@@ -30,7 +34,7 @@ const getStorageValue = (key: string): IData => {
     
 }
 
-export const useLocalStorage = (key: string): IData => {
+export const useLocalStorage = (key: string): [IData, (data: IData) => void] => {
     const [value, setValue] = useState(() => {
         return getStorageValue(key).map(item => ({ ...item, timestamp: new Date(item.timestamp) }));
     });
