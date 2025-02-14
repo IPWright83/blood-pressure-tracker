@@ -29,7 +29,7 @@ export default function Home() {
         <h1>Blood Pressure Tracker</h1>
         <p style={{ textAlign: "center" }}>
           This page is designed to help you track your blood pressure readings. No medical advise is provided and you should always consult your doctor. 
-          <br />Learn more about Blood Pressure at 
+          <br />Learn more about Blood Pressure at&nbsp;
           <a href="https://www.bloodpressureuk.org/your-blood-pressure/understanding-your-blood-pressure/what-do-the-numbers-mean/">
             Blood Pressure UK
           </a>

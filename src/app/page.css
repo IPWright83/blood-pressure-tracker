@@ -36,10 +36,6 @@ a {
 
 }
 
-svg {
-    border: thin solid red;
-}
-
 /*>xxl*/ @media screen and (min-width: 1400px) { .column { width: 50% } }
 /*xxl*/ @media screen and (max-width: 1400px) { .column { width: 50% } }
 /*xl*/ @media screen and (max-width: 1200px) { .column { width: 100% } }

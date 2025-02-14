@@ -72,7 +72,7 @@ export const AveragesChart = ({
 
     return (
         <div style={{ width: "100%" }} ref={target}>
-            <svg width={width} height="100%">
+            <svg width={width} height={height}>
                 <g className="axis">
                     <PressureAxis scale={pressureScale} height={height} margin={margin} />
                     <TimeAxis scale={timeScale} height={height} width={width} margin={margin} />

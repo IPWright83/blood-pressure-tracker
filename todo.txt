@@ -1,0 +1,9 @@
+- Store data in local storage
+    - record new values
+    - record new historical value
+- add legend to average chart
+- add tooltips to chart
+- fix average chart styling (bands/readings)
+- fix banding on BP chart
+- add export/share button?
+- make axis responsive
