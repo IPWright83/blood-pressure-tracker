@@ -22,19 +22,27 @@ export default function Home() {
     { timestamp: new Date("2025-01-28T00:00:00.000Z"), sys: 128, dia: 103, pulse: 84 },
   ]
 
+
   return (
-    <div className="page">
-      <h1>Blood Pressure Tracker</h1>
-      <p className="intro">This page is designed to help you track your blood pressure readings. No medical advise is provided and you should always consult your doctor.</p>
-      <p className="intro"> Learn more about Blood Pressure at <a href="https://www.bloodpressureuk.org/your-blood-pressure/understanding-your-blood-pressure/what-do-the-numbers-mean/">Blood Pressure UK</a></p>
-      <div className="content">
-        <div className="innerContainer">
-          <div className="measure"><Meter /></div>
-          <div className="measure">
-            <AveragesChart data={data} height={400} />
+    <div style={{ width: "100%", height: "100%", padding: 20 }}>
+      <div style={{ marginBottom: 20 }}>
+        <h1>Blood Pressure Tracker</h1>
+        <p style={{ textAlign: "center" }}>
+          This page is designed to help you track your blood pressure readings. No medical advise is provided and you should always consult your doctor. 
+          <br />Learn more about Blood Pressure at 
+          <a href="https://www.bloodpressureuk.org/your-blood-pressure/understanding-your-blood-pressure/what-do-the-numbers-mean/">
+            Blood Pressure UK
+          </a>
+        </p>
+      </div>
+      <div className="row">
+        <div className="column">
+          <div style={{ width: "100%", justifyItems: "center", marginBottom: 20 }}>
+            <Meter />
           </div>
+          <AveragesChart data={data} height={400} />
         </div>
-        <div className="measure">
+        <div className="column">
           <BloodPressureChart height={800} data={data} />
         </div>
       </div>

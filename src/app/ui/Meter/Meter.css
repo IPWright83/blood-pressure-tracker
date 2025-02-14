@@ -30,7 +30,7 @@
     border-radius: 50px;
     filter: drop-shadow(3px 3px #AAA);
     max-height: 402px;
-        transition: all 1s;
+    transition: all 1s;
 }
 
 .meter.fullWidth {
@@ -79,11 +79,20 @@
     text-align: center;
 }
 
-button {
+.record {
     background-color: #2A317E;
     padding: 10px;
     border-radius: 15px;
     color: #FFF;
+}
+
+button {
+    padding: 10px;
+    border-color: #2A317E;
+    border-width: 2px;
+    border-radius: 15px;
+    color: #2A317E;
+    margin-right: 5px;
 }
 
 input[type="number"] {

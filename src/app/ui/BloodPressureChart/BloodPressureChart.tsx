@@ -12,6 +12,7 @@ import { MeasurementBands } from "./MeasurementBands";
 import { Reading } from "./Reading";
 import { AverageReading } from "./AverageReading";
 
+import { useTargetWidth } from "../useTargetWidth";
 import type { IData, IMargin } from "../../types";
 
 import "./BloodPressureChart.css";
@@ -24,11 +25,12 @@ type Props = {
 }
 
 export const BloodPressureChart = ({ 
-    width = 900, 
     height = 700, 
     margin = { top: 30, bottom: 30, left: 200, right: 200 },
     data = [],
 }: Props) => {
+    const [target, width] = useTargetWidth(margin);
+
     const systolicScale = useMemo(() => 
         scaleLinear()
             .range([height - margin.bottom - margin.top, margin.top])
@@ -50,19 +52,21 @@ export const BloodPressureChart = ({
     const avgDia = mean(data, d => d.dia);
     const hasAverages = avgSys !== undefined && avgDia !== undefined;
 
-    return <svg width={width} height={height}>
-        <g className="bands">
-            <SystolicBands scale={systolicScale} margin={margin} bandwidth={30} />
-            <DiastolicBands scale={diastolicScale} margin={margin} bandwidth={30} width={width} />
-            <MeasurementBands margin={margin} width={width} systolicScale={systolicScale} diastolicScale={diastolicScale} bandwidth={30} />
-        </g>
-        <g className="axis">
-            <SystolicAxis scale={systolicScale} margin={margin} />
-            <DiastolicAxis scale={diastolicScale} margin={margin} width={width} />
-        </g>
-        <g className="data">
-            {data.map(d => <Reading key={+d.timestamp} sys={d.sys} dia={d.dia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />)}
-            {hasAverages && <AverageReading avgSys={avgSys} avgDia={avgDia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />}
-        </g>
-    </svg>
+    return <div style={{ width: "100%" }} ref={target}>
+        <svg width={width} height={height} >
+            <g className="bands">
+                <SystolicBands scale={systolicScale} margin={margin} bandwidth={30} />
+                <DiastolicBands scale={diastolicScale} margin={margin} bandwidth={30} width={width} />
+                <MeasurementBands margin={margin} width={width} systolicScale={systolicScale} diastolicScale={diastolicScale} bandwidth={30} />
+            </g>
+            <g className="axis">
+                <SystolicAxis scale={systolicScale} margin={margin} />
+                <DiastolicAxis scale={diastolicScale} margin={margin} width={width} />
+            </g>
+            <g className="data">
+                {data.map(d => <Reading key={+d.timestamp} sys={d.sys} dia={d.dia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />)}
+                {hasAverages && <AverageReading avgSys={avgSys} avgDia={avgDia} systolicScale={systolicScale} diastolicScale={diastolicScale} width={width} margin={margin} />}
+            </g>
+        </svg>
+    </div>
 }

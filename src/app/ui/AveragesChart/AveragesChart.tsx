@@ -10,23 +10,24 @@ import { TimeAxis } from "./TimeAxis";
 import { PulseAxis } from "./PulseAxis";
 import { IdealBand } from "./IdealBand";
 
+import { useTargetWidth } from "../useTargetWidth";
 import type { IData, IMargin, IDatum } from "../../types";
 
 import "./AveragesChart.css";
 
 type Props = {
-    width?: number;
     height?: number;
     margin?: IMargin
     data?: IData;
 }
 
 export const AveragesChart = ({
-    width = 900, 
     height = 700, 
     margin = { top: 10, bottom: 70, left: 70, right: 70 },
     data = [],
 }: Props) => {
+    const [target, width] = useTargetWidth(margin);
+
     const pressureScale = useMemo(() => scaleLinear()
         .range([height - margin.bottom, margin.top])
         .domain([0, 240])
@@ -69,17 +70,20 @@ export const AveragesChart = ({
         .y((d) => pulseScale(d.pulse))
         (data)
 
-    return <svg width={width} height={height}>
-        <g className="axis">
-            <PressureAxis scale={pressureScale} height={height} margin={margin} />
-            <TimeAxis scale={timeScale} height={height} width={width} margin={margin} />
-            <PulseAxis scale={pulseScale} height={height} width={width} margin={margin} />
-            <IdealBand width={width} margin={margin} scale={pressureScale} />
-        </g>
-        <g className="data">
-            {sysD && <path className="avgSys" d={sysD} stroke="steelblue" fill="none" />}
-            {diaD && <path className="avgDia" d={diaD} stroke="steelblue" fill="none" />}
-            {pulseD && <path className="avgPulse" d={pulseD} stroke="red" fill="none" />}
-        </g>
-    </svg>
+    return (
+        <div style={{ width: "100%" }} ref={target}>
+            <svg width={width} height="100%">
+                <g className="axis">
+                    <PressureAxis scale={pressureScale} height={height} margin={margin} />
+                    <TimeAxis scale={timeScale} height={height} width={width} margin={margin} />
+                    <PulseAxis scale={pulseScale} height={height} width={width} margin={margin} />
+                    <IdealBand width={width} margin={margin} scale={pressureScale} />
+                </g>
+                <g className="data">
+                    {sysD && <path className="avgSys" d={sysD} stroke="steelblue" fill="none" />}
+                    {diaD && <path className="avgDia" d={diaD} stroke="steelblue" fill="none" />}
+                    {pulseD && <path className="avgPulse" d={pulseD} stroke="red" fill="none" />}
+                </g>
+            </svg>
+        </div>)
 }
